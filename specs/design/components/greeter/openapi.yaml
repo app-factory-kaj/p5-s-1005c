@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: Greeter API
+  version: 0.1.0
+  description: Returns a JSON greeting for a given name.
+servers:
+  - url: /
+paths:
+  /hello:
+    get:
+      operationId: getGreeting
+      summary: Return a greeting for the given name
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: The name to greet
+          schema:
+            type: string
+            minLength: 1
+      responses:
+        '200':
+          description: The greeting for the given name
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Greeting'
+        '400':
+          description: The name parameter is missing or empty
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Greeting:
+      type: object
+      required: [name, message]
+      properties:
+        name:
+          type: string
+          description: The name that was greeted
+        message:
+          type: string
+          description: The greeting message
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: integer
+          description: HTTP or application error code
+        message:
+          type: string
+          description: short human-readable label
+        description:
+          type: string
+          description: detailed explanation
+        moreInfo:
+          type: string
+          description: URI to documentation

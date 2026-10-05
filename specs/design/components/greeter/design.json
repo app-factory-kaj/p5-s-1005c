@@ -1,0 +1,14 @@
+{
+  "name": "greeter",
+  "type": "service",
+  "version": "0.1.0",
+  "language": "Go",
+  "buildpack": "docker",
+  "appPath": "greeter",
+  "entrypoint": "deployment/service",
+  "exposure": "intranet",
+  "dependencies": [],
+  "description": "A small reference HTTP service that returns a JSON greeting for a given name via GET /hello. It follows the structure and conventions of app-factory-kaj/e2e-reference. It holds no state, calls no other component, and requires no sign-in.",
+  "stories": [1, 2],
+  "skillsPinned": ["openapi-conventions", "go"]
+}
